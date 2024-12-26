@@ -29,7 +29,7 @@ class User(UserMixin, db.Model):
         """Define senha com hash"""
         if len(password) < 8:
             raise ValueError("Senha deve ter pelo menos 8 caracteres")
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
 
     def check_password(self, password):
         """Verifica senha"""
